@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>The State of Major League Pitching</title>
+        <!--Use the line below to link to the latest version of D3-->
+        <!--<script src="https://d3js.org/d3.v5.min.js"></script>-->
+        <link rel="stylesheet" href="leaflet/leaflet.css"/>
+        <script type="text/javascript" src="d3.js"></script>
+    <style>
+    #header {grid-area: header;}
+    #viz1_dropdown1 {grid-area: viz1_dropdown1;}
+    #viz1_buttons {grid-area: viz1_buttons;}
+    #viz1 {grid-area: viz1;}
+    #viz2_dropdown1 {grid-area: viz2_dropdown1;}
+    #viz2 {grid-area: viz2;}
+    #viz3_dropdown1 {grid-area: viz3_dropdown1;}
+    #viz3 {grid-area: viz3;}
+    #viz4_dropdown1 {grid-area: viz4_dropdown1;}
+    #viz4 {grid-area: viz4;}
+    #tj_summary {grid-area: tj_summary;}
+    #viz5 {grid-area: viz5;}
+    #tj_recovery {grid-area: tj_recovery;}
+    #viz6 {grid-area: viz6;}
+    #viz7 {grid-area: viz7;}
+    #footer {grid-area: footer;}
+    #grid-container {
+        display: grid;
+        grid-template-areas:
+            'header'
+            'viz1_dropdown1'
+            'viz1_buttons'
+            'viz1'
+            'viz2_dropdown1'
+            'viz2'
+            'viz3_dropdown1'
+            'viz3'
+            'tj_summary'
+            'viz5'
+            'tj_recovery'
+            'viz6'
+            'viz7'
+            'viz4_dropdown1'
+            'viz4'
+            'footer'
+    }
+    
+    div {
+        font-family: Times, serif;
+    }
+    </style>
+    </head>
+    <body>
+    <div id="grid-container">
+        <div id="header" style="padding:10px">
+            <h1>The State of Major League Pitching: A Visual Investigation</h1>
+            <p>
+            Pitching is one of most important positions in the game of baseball, and while a pitcher cannot win a game all by himself, he can certainly lose a game for his team with a poor performance.  With 162 games a season (not counting the post season) and data for some statistics going all the way back to 1870, baseball is a prime candidate for analytical investigation.  This project aims to break down the state of Major League pitching through the 2018 season, investigating key performance indicators of pitchers past and present.<br><br>
+            The majority of the data for this investigation come from <a href="https://www.fangraphs.com" target="_blank">Fangraphs</a>, to which I am much indebted.  Other data sources are noted at the bottom of this page (with links).  I am assuming a familiarity with baseball terminology, including basic and advanced statistics for pitching, but if you are unclear on any statistics or need a refresher, an excellent primer is available <a href="https://library.fangraphs.com/pitching/complete-list-pitching/" target="_blank">here</a>.<br><br>
+            Unless otherwise noted, the following assumptions apply to all visualizations on this page:<br>
+            <ul><li>Pitchers were considered starters if they started 50% or more of their games in a given season.  All other pitchers were considered relievers.</li>
+            <li>Pitchers who played for multiple teams in a season were categorized to a league (American or National) if all the teams they played for that season were in the same league (e.g., playing for both the Mets and Cubs in a season); however, if they played in more than one league in a single season, they were excluded from the league-specific statistics.</li>
+            </ul>
+            </p>
+        </div>
+        <div id="viz1_dropdown1">
+            <h2>Overview</h2>
+            <p>The scatterplot below shows all pitchers with at least 50 innings by season for 1990 through 2018.  The straight lines show the league averages for the year and the colors indicate starters vs. relievers.<br><br>
+            Using basic statistics, an elite pitcher would have a low ERA, low Walks and Hits per Inning (WHIP), a high strikeout rate (K/9) and low walk rate (BB/9).  Looking at more advanced statistics, that same elite pitcher would have a low FIP and xFIP* and a high Wins Above Replacement (WAR) rate.  I personally like xFIP because it takes all out much of the "luck" factor of pitching (e.g., the quality of the defense behind him, the size of his ballpark, the way the wind is blowing) to focus on the part of a pitcher's performance he can control.<br><br>
+            *Like many of the more advanced statistics shown here, xFIP is only available for 2002 and later.  If you select xFIP for a year prior to 2002, the chart will display FIP by default.
+            </p>
+            <br>Select Season to Display:<br>
+        </div>
+        <div id="viz1_buttons">
+            <br>Select Statistic to Display: <br>
+        </div>
+        <div id="viz1"></div>
+        <script type="text/javascript" src="scatterplot.js"></script>
+        <div id="viz2_dropdown1">
+            <h2>Pitcher Profiles</h2>
+            <p>The stacked bar charts below profile the careers of the top vote-getters for the Cy Young award in both leagues for the past 10 years (2009 through 2018).  The chart on the left shows pitch types used for each season, and compares the season xFIP for the pitcher with the MLB average for the same season.  The right chart shows the type of contact (soft, medium or hard) and compares that with opponents' batting average on balls in play (BABIP).</p>
+            <br><br>Select Pitcher to View:<br></div>
+        <div id="viz2"></div>
+        <script type="text/javascript" src="stacked_bars.js"></script>
+        <div id="viz3_dropdown1">
+            <h2>Historical Trends</h2>
+            <p>The charts below show the historical trends for various pitching statistics for all pitchers, starters and relievers.  Pitch count limits that have been instituted across all teams in today's game show a clear trend of less total outs and average outs per 9 innings across the game, for both starters and relievers.  This also has the consequence of significantly reducing the number of complete games by starting pitchers in recent seasons.  In 1979, there were over 1,000 complete games across baseball.  By 1998, that number was down to 302 and in 2018, there were only 42 complete games in the entire season.<br>
+            More recently, there has been a clear trend towards hard throwing and strikeouts.  The average fastball velocity for all pitchers has increases from 88.5 mph in 2002 (the first year this statistic was available) to 92.1 in 2018.  At the same time, the K/9 rate has increased from 6.82 to 8.07 across baseball over the last 10 years (2008 to 2018).</p>
+            <br><br>Select Statistic to View:<br>
+        </div>
+        <div id="viz3"></div>
+        <script type="text/javascript" src="historical.js"></script>
+        <div id="tj_summary">
+           <h2>The Rise of Tommy John Surgery</h2>
+            <p>It is nearly impossible to talk about pitching in 2018 without talking about Tommy John surgery.  Prior to 1974, if a pitcher's ulnar collateral ligament (UCL) blew out, that was the end of his career.  That was the year that Dr. Frank Jobe performed the first UCL repair surgery on pitching Tommy John, forever changing the sport.  Much ink has been spilled on the rising number of Tommy John surgeries, not just in the major and minor league systems, but in college and high school baseball as well.  Jon Roegele wrote about it in <a href="https://tht.fangraphs.com/ten-interesting-facts-about-tommy-john-surgery/" target="_blank">The Hardball Times</a>, as well as compiled a <a href="https://docs.google.com/spreadsheets/d/1gQujXQQGOVNaiuwSN680Hq-FDVsCwvN-3AazykOBON0/edit#gid=0" target="_blank">spreadsheet</a> of all the reported Tommy John surgeries in baseball, from which much of the data for this investigation was pulled.<br><br>
+            While there has been a reduction in recent years from the high-water mark of 36 major league players needing surgery in 2012, the 26 players going down for surgery in the 2018 season is hardly encouraging.  For simplicity, the charts that follow only consider MLB players, but this epidemic is hardly limited to just the major leagues.  Plenty of minor league pitchers get this surgery every year.  And the epidemic is not limited to pitchers.  While the majority of Tommy John patients are pitchers, UCL injuries also affect position players, such as the Dodger's shortstop Corey Seager.
+        </p>           
+        </div>
+        <div id="viz5"></div>
+        <script type="text/javascript" src="tj_years.js"></script>
+        <div id="tj_recovery">
+            <p>The good news about Tommy John surgery is that there is a good chance that patients will make it back to the major leagues.  The overall return rate is 72%, with recent years showing even higher rates (the drop-off in return rate from 2015 to 2016 and '17 may be artificial given that the average recovery rate for pitchers is 21 months or nearly 2 years).  The bad news is that the recovery road is long and difficult.  Position players tend to come back a lot faster (in slightly less than a year on average), but for pitchers, it can take a lot longer to get back to the majors.  In some extreme cases, it can take many years.  But even in the best-case scenarios, pitchers can expect to miss at least a full season if not more.</p>
+        </div>
+        <div id="viz6"></div>
+        <script type="text/javascript" src="tj_recovery_bar.js"></script>
+        <div id="viz7"></div>
+        <script type="text/javascript" src="tj_boxandwhisker.js"></script>
+        <div id="viz4_dropdown1">
+            <p>There are many theories to what is causing the continued rise of UCL injuries.  One theory is overuse, but with strict pitch counts in place, and surgeries continuing to rise, I am skeptical this is the cause.  The average number of pitches per game for starters has gone down from 89.5 to 86.1, with a similar reduction of 20.5 to 19.0 for relievers from 2002 to 2018.  And yet, over 300 MLB pitchers have undergone the surgery since 2003.<br><br>
+            One additional theory is the rise of the "strike-out" pitcher, with 100-mph fastballs that just blow by the competition.  And the rise in both fastball velocity and average number of strikeouts per 9 would seem to indicate this as a reasonable theory.<br><br>
+            The bar charts below show the pitchers who had the surgery for each year from 2002 through 2018.  The filled bars indicate pitchers above the MLB average for that season in fastball velocity and fastball usage.  As can be seen, many of the patients have above-average fastballs.  While this is correlation and not necessarily causation, it is worth considering as a potential contributing factor.</p>
+            <br><br>Select Season to Display:<br></div>
+        <div id="viz4"></div>
+        <script type="text/javascript" src="tj_fastball_byyear.js"></script>
+        
+        <div id="footer" style="padding:10px">
+            Data Sources:<br>
+            <a href="http://www.fangraphs.com" target="_blank">Fangraphs</a><br>
+            <a href="https://www.baseball-reference.com/" target="_blank">Baseball Reference</a><br>
+            <a href="https://tht.fangraphs.com/ten-interesting-facts-about-tommy-john-surgery/" target="_blank">The Hardball Times</a><br>
+            <a href="http://www.baseball-almanac.com/teammenu.shtml" target="_blank">Baseball Almanac</a>
+        </div>
+    </body>
+</html>
